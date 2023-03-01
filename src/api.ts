@@ -20,7 +20,7 @@ export async function oauthToken(
     : JSON.stringify(options);
 
   return await getJSON<TokenEndpointResponse>(
-    `${baseUrl}/oauth/token`,
+    `${baseUrl}/oauth2/token`,
     timeout,
     audience || 'default',
     scope,

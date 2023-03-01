@@ -201,8 +201,7 @@ export class Auth0Client {
     // 3. Add `offline_access` if `useRefreshTokens` is enabled
     this.scope = getUniqueScopes(
       'openid',
-      this.options.authorizationParams.scope,
-      this.options.useRefreshTokens ? 'offline_access' : ''
+      this.options.authorizationParams.scope
     );
 
     this.transactionManager = new TransactionManager(
@@ -235,14 +234,11 @@ export class Auth0Client {
   }
 
   private _url(path: string) {
-    const auth0Client = encodeURIComponent(
-      btoa(JSON.stringify(this.options.auth0Client || DEFAULT_AUTH0_CLIENT))
-    );
-    return `${this.domainUrl}${path}&auth0Client=${auth0Client}`;
+    return `${this.domainUrl}${path}`;
   }
 
   private _authorizeUrl(authorizeOptions: AuthorizeOptions) {
-    return this._url(`/authorize?${createQueryParams(authorizeOptions)}`);
+    return this._url(`/oauth/authorize?${createQueryParams(authorizeOptions)}`);
   }
 
   private async _verifyIdToken(
@@ -306,6 +302,7 @@ export class Auth0Client {
       authorizationParams.redirect_uri ||
         this.options.authorizationParams.redirect_uri ||
         fallbackRedirectUri,
+      authorizeOptions?.response_type,
       authorizeOptions?.response_mode
     );
 
@@ -436,7 +433,7 @@ export class Auth0Client {
    * await auth0.loginWithRedirect(options);
    * ```
    *
-   * Performs a redirect to `/authorize` using the parameters
+   * Performs a redirect to `/oauth/authorize` using the parameters
    * provided as arguments. Random and secure `state` and `nonce`
    * parameters will be auto-generated.
    *
@@ -453,7 +450,9 @@ export class Auth0Client {
       this.options.authorizationParams.organization;
 
     const { url, ...transaction } = await this._prepareAuthorizeUrl(
-      urlOptions.authorizationParams || {}
+      urlOptions.authorizationParams || {},
+      // Uncomment once IDP supports
+      // { response_mode: 'form_post', response_type: 'id_token' }
     );
 
     this.transactionManager.create({

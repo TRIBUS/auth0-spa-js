@@ -57,6 +57,7 @@ export const getAuthorizeParams = (
   nonce: string,
   code_challenge: string,
   redirect_uri: string | undefined,
+  response_type: string | undefined,
   response_mode: string | undefined
 ): AuthorizeOptions => {
   return {
@@ -64,7 +65,7 @@ export const getAuthorizeParams = (
     ...clientOptions.authorizationParams,
     ...authorizationParams,
     scope: getUniqueScopes(scope, authorizationParams.scope),
-    response_type: 'code',
+    response_type: response_type || 'code',
     response_mode: response_mode || 'query',
     state,
     nonce,

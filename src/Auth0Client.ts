@@ -151,7 +151,7 @@ export class Auth0Client {
 
     if (options.cache && options.cacheLocation) {
       console.warn(
-        'Both `cache` and `cacheLocation` options have been specified in the Auth0Client configuration; ignoring `cacheLocation` and using `cache`.'
+        'Both `cache` and `cacheLocation` options have been specified in the Client configuration; ignoring `cacheLocation` and using `cache`.'
       );
     }
 

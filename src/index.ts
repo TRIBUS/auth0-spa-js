@@ -1,4 +1,4 @@
-import { Auth0Client } from './Auth0Client';
+import { Auth0Client as Client } from './Auth0Client';
 import { Auth0ClientOptions } from './global';
 
 import './global';
@@ -109,11 +109,11 @@ function _newClient() {
       }
     };
 
-    return new Auth0Client(options);
+    return new Client(options);
   }
 }
 
-export { Auth0Client };
+export { Client };
 
 export {
   GenericError,

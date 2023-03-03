@@ -1087,7 +1087,6 @@ export class Auth0Client {
       {
         baseUrl: this.domainUrl,
         client_id: this.options.clientId,
-        auth0Client: this.options.auth0Client,
         useFormData: this.options.useFormData,
         timeout: this.httpTimeoutMs,
         ...options

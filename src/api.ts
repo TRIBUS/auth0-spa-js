@@ -9,7 +9,6 @@ export async function oauthToken(
     timeout,
     audience,
     scope,
-    auth0Client,
     useFormData,
     ...options
   }: TokenEndpointOptions,

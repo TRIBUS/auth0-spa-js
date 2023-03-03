@@ -191,16 +191,6 @@ export interface Auth0ClientOptions extends BaseLoginOptions {
   httpTimeoutInSeconds?: number;
 
   /**
-   * Internal property to send information about the client to the authorization server.
-   * @internal
-   */
-  auth0Client?: {
-    name: string;
-    version: string;
-    env?: { [key: string]: string };
-  };
-
-  /**
    * Sets an additional cookie with no SameSite attribute to support legacy browsers
    * that are not compatible with the latest SameSite changes.
    * This will log a warning on modern browsers, you can disable the warning by setting
@@ -492,7 +482,6 @@ export interface TokenEndpointOptions {
   client_id: string;
   grant_type: string;
   timeout?: number;
-  auth0Client: any;
   useFormData?: boolean;
   [key: string]: any;
 }

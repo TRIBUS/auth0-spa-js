@@ -91,7 +91,7 @@ export const openPopup = (url: string) => {
 
   return window.open(
     url,
-    'auth0:authorize:popup',
+    'ezSDK:authorize:popup',
     `left=${left},top=${top},width=${width},height=${height},resizable,scrollbars=yes,status=1`
   );
 };

@@ -89,7 +89,6 @@ import {
   cacheFactory,
   getAuthorizeParams,
   GET_TOKEN_SILENTLY_LOCK_KEY,
-  OLD_IS_AUTHENTICATED_COOKIE_NAME,
   patchOpenUrlWithOnRedirect
 } from './Auth0Client.utils';
 
@@ -562,17 +561,7 @@ export class Auth0Client {
    */
   public async checkSession(options?: GetTokenSilentlyOptions) {
     if (!this.cookieStorage.get(this.isAuthenticatedCookieName)) {
-      if (!this.cookieStorage.get(OLD_IS_AUTHENTICATED_COOKIE_NAME)) {
-        return;
-      } else {
-        // Migrate the existing cookie to the new name scoped by client ID
-        this.cookieStorage.save(this.isAuthenticatedCookieName, true, {
-          daysUntilExpire: this.sessionCheckExpiryDays,
-          cookieDomain: this.options.cookieDomain
-        });
-
-        this.cookieStorage.remove(OLD_IS_AUTHENTICATED_COOKIE_NAME);
-      }
+      return;
     }
 
     try {

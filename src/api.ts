@@ -30,10 +30,7 @@ export async function oauthToken(
       headers: {
         'Content-Type': useFormData
           ? 'application/x-www-form-urlencoded'
-          : 'application/json',
-        'Auth0-Client': btoa(
-          JSON.stringify(auth0Client || DEFAULT_AUTH0_CLIENT)
-        )
+          : 'application/json'
       }
     },
     worker,

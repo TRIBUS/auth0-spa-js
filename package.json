@@ -1,12 +1,12 @@
 {
-  "author": "Auth0",
-  "name": "@auth0/auth0-spa-js",
-  "description": "Auth0 SDK for Single Page Applications using Authorization Code Grant Flow with PKCE",
+  "author": "TRIBUS",
+  "name": "@TRIBUS/ezement-sdk",
+  "description": "Ezement SDK for Single Sign On (SSO)",
   "license": "MIT",
   "version": "2.0.4",
-  "main": "dist/lib/auth0-spa-js.cjs.js",
+  "main": "dist/lib/ezement-sdk.cjs.js",
   "types": "dist/typings/index.d.ts",
-  "module": "dist/auth0-spa-js.production.esm.js",
+  "module": "dist/ezement-sdk.production.esm.js",
   "scripts": {
     "dev": "rimraf dist && rollup -c --watch",
     "start": "npm run dev",
@@ -20,8 +20,8 @@
     "test:open:integration": "cypress open",
     "test:watch:integration": "concurrently --raw npm:dev 'npm:test:open:integration'",
     "test:es-check": "npm run test:es-check:es2017 && npm run test:es-check:es2017:module",
-    "test:es-check:es2017": "es-check es2017 'dist/auth0-spa-js.production.js'",
-    "test:es-check:es2017:module": "es-check es2017 'dist/auth0-spa-js.production.esm.js' --module ",
+    "test:es-check:es2017": "es-check es2017 'dist/ezement-sdk.production.js'",
+    "test:es-check:es2017:module": "es-check es2017 'dist/ezement-sdk.production.esm.js' --module ",
     "test:integration:server": "npm run dev",
     "test:integration:tests": "wait-on http://localhost:3000/ && cypress run",
     "test:integration": "concurrently --raw --kill-others --success first npm:test:integration:server npm:test:integration:tests",
@@ -89,12 +89,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/auth0/auth0-spa-js.git"
+    "url": "git://github.com/TRIBUS/ezement-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/auth0/auth0-spa-js/issues"
+    "url": "https://github.com/TRIBUS/ezement-sdk/issues"
   },
-  "homepage": "https://github.com/auth0/auth0-spa-js#readme",
+  "homepage": "https://github.com/TRIBUS/ezement-sdk#readme",
   "keywords": [
     "auth0",
     "login",
@@ -104,9 +104,9 @@
     "SPA authentication"
   ],
   "ccu": {
-    "name": "auth0-spa-js",
+    "name": "ezement-sdk",
     "cdn": "https://cdn.auth0.com",
-    "mainBundleFile": "auth0-spa-js.production.js",
+    "mainBundleFile": "ezement-sdk.production.js",
     "bucket": "assets.us.auth0.com",
     "localPath": "dist",
     "digest": {

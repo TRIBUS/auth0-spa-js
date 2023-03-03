@@ -482,14 +482,14 @@ describe('utils', () => {
       (<any>global).msCrypto = undefined;
 
       expect(validateCrypto).toThrowError(
-        'For security reasons, `window.crypto` is required to run `auth0-spa-js`.'
+        'For security reasons, `window.crypto` is required to run `ezement-sdk`.'
       );
     });
     it('should throw error if crypto.subtle is undefined', () => {
       (<any>global).crypto = {};
 
       expect(validateCrypto).toThrowError(`
-      auth0-spa-js must run on a secure origin. See https://github.com/auth0/auth0-spa-js/blob/master/FAQ.md#why-do-i-get-auth0-spa-js-must-run-on-a-secure-origin for more information.
+      ezement-sdk must run on a secure origin. See https://github.com/auth0/ezement-sdk/blob/master/FAQ.md#why-do-i-get-ezement-sdk-must-run-on-a-secure-origin for more information.
     `);
     });
   });

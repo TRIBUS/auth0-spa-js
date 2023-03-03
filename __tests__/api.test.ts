@@ -42,7 +42,7 @@ describe('oauthToken', () => {
       )
     );
     const auth0Client = {
-      name: 'auth0-spa-js',
+      name: 'ezement-sdk',
       version: version
     };
 
@@ -88,7 +88,7 @@ describe('oauthToken', () => {
     };
 
     const auth0Client = {
-      name: 'auth0-spa-js',
+      name: 'ezement-sdk',
       version: version
     };
 

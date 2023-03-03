@@ -4,7 +4,7 @@ import { DEFAULT_SCOPE } from '../src/constants';
 export const TEST_AUTH0_CLIENT_QUERY_STRING = `&auth0Client=${encodeURIComponent(
   btoa(
     JSON.stringify({
-      name: 'auth0-spa-js',
+      name: 'ezement-sdk',
       version: version
     })
   )

@@ -205,12 +205,12 @@ export const bufferToBase64UrlEncoded = (input: number[] | Uint8Array) => {
 export const validateCrypto = () => {
   if (!getCrypto()) {
     throw new Error(
-      'For security reasons, `window.crypto` is required to run `auth0-spa-js`.'
+      'For security reasons, `window.crypto` is required to run `ezement-sdk`.'
     );
   }
   if (typeof getCrypto().subtle === 'undefined') {
     throw new Error(`
-      auth0-spa-js must run on a secure origin. See https://github.com/auth0/auth0-spa-js/blob/master/FAQ.md#why-do-i-get-auth0-spa-js-must-run-on-a-secure-origin for more information.
+      ezement-sdk must run on a secure origin.
     `);
   }
 };

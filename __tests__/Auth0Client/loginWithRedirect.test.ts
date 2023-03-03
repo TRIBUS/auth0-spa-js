@@ -133,7 +133,7 @@ describe('Auth0Client', () => {
         {
           'Auth0-Client': btoa(
             JSON.stringify({
-              name: 'auth0-spa-js',
+              name: 'ezement-sdk',
               version: version
             })
           )
@@ -172,7 +172,7 @@ describe('Auth0Client', () => {
         {
           'Auth0-Client': btoa(
             JSON.stringify({
-              name: 'auth0-spa-js',
+              name: 'ezement-sdk',
               version: version
             })
           )

@@ -6,8 +6,8 @@ import './global';
 export * from './global';
 
 (function init() {
-    _createButton();
-    _handleCallback();
+  _createButton();
+  _handleCallback();
 })();
 
 async function _createButton() {
@@ -23,7 +23,7 @@ async function _createButton() {
   <a href="javascript:"
      id="ezAnchor"
      style="display: block;
-            background-color: #eee;
+            background-color: #bfd;
             line-height: 40px;
             text-align: center">
     EZ Button
@@ -48,6 +48,7 @@ async function _createButton() {
     overlay.style.left = '0px';
     overlay.style.cursor = 'pointer';
 
+    ezButton.innerHTML = '';
     ezButton.appendChild(iframe);
     ezButton.appendChild(overlay);
 

@@ -55,7 +55,7 @@ export const DEFAULT_SESSION_CHECK_EXPIRY_DAYS = 1;
  * @ignore
  */
 export const DEFAULT_AUTH0_CLIENT = {
-  name: 'auth0-spa-js',
+  name: 'ezement-sdk',
   version: version
 };
 

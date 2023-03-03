@@ -10,52 +10,16 @@ export * from './global';
     _handleCallback();
 })();
 
-export async function bindButton() {
-  const ezClient = newClient();
-
-  if (ezClient) {
-    const ezButton = document.getElementById('ezLogin');
-    const ezFrame = document.querySelector<HTMLIFrameElement>("#ezFrame");
-
-    ezFrame?.contentWindow?.document?.getElementById('ezAnchor')?.addEventListener("click", (e) => {
-      e.preventDefault();
-
-      if (ezButton?.dataset?.redirect_uri) {
-        ezClient.loginWithRedirect();
-      }
-      else if (ezButton?.dataset?.callback_fn) {
-        // TODO: Login w/ popup requires response_mode: 'web_message' support w/ IDP
-      }
-    });
-  }
-}
-
-export function newClient() {
-  const ezButton = document.getElementById('ezLogin');
-
-  if (ezButton) {
-    const options: Auth0ClientOptions = {
-      domain: `${ezButton.dataset.domain}`,
-      clientId: `${ezButton.dataset.client_id}`,
-      issuer: ezButton.dataset.issuer,
-      useRefreshTokens: true,
-      authorizationParams: {
-        redirect_uri: ezButton.dataset.redirect_uri || window.location.origin,
-        scope: 'openid email profile'
-      }
-    };
-
-    return new Auth0Client(options);
-  }
-}
-
 async function _createButton() {
   const ezButton = document.getElementById('ezLogin');
 
   if (ezButton) {
+    ezButton.style.position = 'relative';
+    ezButton.style.width = '200px';
+
     const iframe = window.document.createElement('iframe');
     const html = `<html>
-<body onload="parent.auth0.bindButton()" style="margin: 0px; padding: 0px;">
+<body style="margin: 0px; padding: 0px;">
   <a href="javascript:"
      id="ezAnchor"
      style="display: block;
@@ -76,7 +40,30 @@ async function _createButton() {
     iframe.style.margin = '0px';
     iframe.style.padding = '0px';
 
+    const overlay = window.document.createElement('div');
+    overlay.style.position = 'absolute';
+    overlay.style.top = '0px';
+    overlay.style.right = '0px';
+    overlay.style.bottom = '0px';
+    overlay.style.left = '0px';
+    overlay.style.cursor = 'pointer';
+
     ezButton.appendChild(iframe);
+    ezButton.appendChild(overlay);
+
+    overlay.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const ezClient = _newClient();
+
+      if (ezButton.dataset.redirect_uri) {
+        ezClient?.loginWithRedirect();
+      }
+      else if (ezButton.dataset.callback_fn) {
+        // TODO: Login w/ popup requires response_mode: 'web_message' support w/ IDP
+      }
+    });
   }
 }
 
@@ -84,7 +71,7 @@ async function _handleCallback() {
   const ezButton = document.getElementById('ezLogin');
 
   if (ezButton?.dataset?.callback_fn) {
-    const ezClient = newClient();
+    const ezClient = _newClient();
 
     if (ezClient) {
       if (location.search.includes("state=") &&
@@ -103,6 +90,25 @@ async function _handleCallback() {
         }
       }
     }
+  }
+}
+
+function _newClient() {
+  const ezButton = document.getElementById('ezLogin');
+
+  if (ezButton) {
+    const options: Auth0ClientOptions = {
+      domain: `${ezButton.dataset.domain}`,
+      clientId: `${ezButton.dataset.client_id}`,
+      issuer: ezButton.dataset.issuer,
+      useRefreshTokens: true,
+      authorizationParams: {
+        redirect_uri: ezButton.dataset.redirect_uri || window.location.origin,
+        scope: 'openid email profile'
+      }
+    };
+
+    return new Auth0Client(options);
   }
 }
 
